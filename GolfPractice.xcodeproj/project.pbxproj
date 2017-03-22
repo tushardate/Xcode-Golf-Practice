@@ -310,6 +310,7 @@
 				98BA54671E80FE8900AD44C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -22,10 +22,29 @@ class ViewController: UIViewController {
     let shotShape = ["Baby Fade", "Fade", "Baby Draw", "Draw", "Slice", "Hook", "Straight"]
     let shotTrajectory = ["High", "Low", "Medium"]
     
+    var time = 10;
     var timer = Timer()
     
+    @IBOutlet weak var clubsDisplay: UILabel!
+    @IBOutlet weak var shotShapeDisplay: UILabel!
+    @IBOutlet weak var shotTrajectoryDisplay: UILabel!
+    @IBOutlet weak var clubsLockSwitch: UISwitch!
+    @IBOutlet weak var shotTrajectoryImage: UIImageView!
+    @IBOutlet weak var shotShapeImage: UIImageView!
+    
+    @IBAction func generateButton(_ sender: UIButton) {
+        resetTimer()
+        generateShot()
+    }
+    
+
+    @IBAction func timeSliderValueChanged(_ sender: UISlider) {
+        time = Int(sender.value)
+        resetTimer()
+    }
+    
     func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 6, target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: Double(time), target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
     }
     
     func resetTimer() {
@@ -37,22 +56,23 @@ class ViewController: UIViewController {
         generateShot()
     }
     
-    @IBOutlet weak var clubsDisplay: UILabel!
-    @IBOutlet weak var shotShapeDisplay: UILabel!
-    @IBOutlet weak var shotTrajectoryDisplay: UILabel!
-    @IBAction func generateButton(_ sender: UIButton) {
-        resetTimer()
-        generateShot()
-    }
-    
     func generateShot() {
-        clubsDisplay.text = clubs.randomElement()
-        shotShapeDisplay.text = shotShape.randomElement()
-        shotTrajectoryDisplay.text = shotTrajectory.randomElement()
+        let currShotTrajectory = shotTrajectory.randomElement()
+        let currShotShape = shotShape.randomElement()
+        
+        if !clubsLockSwitch.isOn {
+            clubsDisplay.text = clubs.randomElement()
+        }
+        shotShapeDisplay.text = currShotShape
+        shotShapeImage.image = UIImage(named: currShotShape)
+        shotTrajectoryDisplay.text = currShotTrajectory
+        shotTrajectoryImage.image = UIImage(named: currShotTrajectory)
     }
     
     override func viewDidLoad() {
+        clubsLockSwitch.transform = CGAffineTransform(scaleX: 0.70, y: 0.70)
         super.viewDidLoad()
+        generateShot()
         runTimer()
     }
 //
