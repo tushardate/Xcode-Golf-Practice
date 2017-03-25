@@ -52,6 +52,7 @@
                                                     </switch>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.10200000000000002" green="0.10200000000000002" blue="0.17000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="rD9-pM-Qqb" firstAttribute="top" secondItem="6Dm-Qd-Gzj" secondAttribute="top" constant="5" id="Df4-2p-pdK"/>
                                                     <constraint firstItem="Cdl-Pv-ph8" firstAttribute="top" secondItem="6Dm-Qd-Gzj" secondAttribute="top" constant="5" id="OVW-7u-ta5"/>
@@ -62,6 +63,10 @@
                                                     <constraint firstItem="xay-KE-Kqd" firstAttribute="centerX" secondItem="6Dm-Qd-Gzj" secondAttribute="centerX" id="qQk-rS-2h9"/>
                                                     <constraint firstAttribute="trailing" secondItem="rD9-pM-Qqb" secondAttribute="trailing" constant="5" id="wed-LM-CeV"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="hb3-2v-T2p" appends="YES" id="Pp7-eD-lXz"/>
+                                                    <outletCollection property="gestureRecognizers" destination="FBy-he-WyK" appends="YES" id="ETd-Qw-mzj"/>
+                                                </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TV0-g1-ab3">
                                                 <rect key="frame" x="0.0" y="199" width="355" height="189"/>
@@ -230,6 +235,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="hb3-2v-T2p">
+                    <connections>
+                        <action selector="swipeGestureClubRight:" destination="BYZ-38-t0r" id="zd7-hD-XBK"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="FBy-he-WyK">
+                    <connections>
+                        <action selector="swipeGestureClubLeft:" destination="BYZ-38-t0r" id="6YE-vC-AEO"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="143.47826086956522"/>
         </scene>

@@ -28,6 +28,11 @@ class ViewController: UIViewController {
     let shotShape = ["Baby Fade", "Fade", "Baby Draw", "Draw", "Slice", "Hook", "Straight"]
     let shotTrajectory = ["High", "Low", "Medium"]
     
+    var currClub = ""
+    var currShotTrajectory = ""
+    var currShotShape = ""
+    
+    
     var time = 2;
     var timer = Timer()
     
@@ -61,11 +66,12 @@ class ViewController: UIViewController {
     }
     
     func generateShot() {
-        let currShotTrajectory = shotTrajectory.randomElement()
-        let currShotShape = shotShape.randomElement()
+        currShotTrajectory = shotTrajectory.randomElement()
+        currShotShape = shotShape.randomElement()
         
         if !clubsLockSwitch.isOn {
-            clubsDisplay.text = clubs.randomElement()
+            currClub = clubs.randomElement()
+            clubsDisplay.text = currClub
         }
         shotShapeDisplay.text = currShotShape
         shotShapeImage.image = UIImage(named: currShotShape)
@@ -87,6 +93,31 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func swipeGestureClubRight(_ sender: UISwipeGestureRecognizer) {
+        if(clubsLockSwitch.isOn == false) {
+            clubsLockSwitch.isOn = true
+        }
+      
+        let currClubIndex = clubs.index(of: currClub)
+        
+        if(currClubIndex! - 1) >= 0 {
+            clubsDisplay.text = clubs[currClubIndex! - 1]
+            currClub = clubs[currClubIndex! - 1]
+        }
+    }
 
+    @IBAction func swipeGestureClubLeft(_ sender: UISwipeGestureRecognizer) {
+        
+        if(clubsLockSwitch.isOn == false) {
+            clubsLockSwitch.isOn = true
+        }
+        
+        let currClubIndex = clubs.index(of: currClub)
+        
+        if(currClubIndex! + 1) <= clubs.count - 1 {
+            clubsDisplay.text = clubs[currClubIndex! + 1]
+            currClub = clubs[currClubIndex! + 1]
+        }
+    }
 }
 
